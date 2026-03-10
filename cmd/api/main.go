@@ -29,7 +29,7 @@ func main() {
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{
 			"http://localhost:3000", 
-			"https://ihk-portfolio.vercel.app/", 
+			"https://ihk-portfolio.vercel.app", 
 		},
 		AllowedMethods:   []string{"POST", "OPTIONS"},
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
