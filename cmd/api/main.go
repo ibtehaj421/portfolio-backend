@@ -28,7 +28,7 @@ func main() {
 	// Configure CORS
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{
-			"http://localhost:3000",   // Local Next.js dev
+			"http://localhost:3000", 
 			"https://ihk-portfolio.vercel.app/", 
 		},
 		AllowedMethods:   []string{"POST", "OPTIONS"},
