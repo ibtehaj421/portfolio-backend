@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: securepassword123
+      POSTGRES_DB: portfolio_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: go_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      # Notice the host is "db" (the service name above), not "localhost"
+      - DATABASE_URL=postgres://admin:securepassword123@db:5432/portfolio_db?sslmode=disable
+      - ALLOWED_ORIGINS=http://localhost:3000,https://ihk-portfolio.vercel.app/
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
