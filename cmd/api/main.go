@@ -23,6 +23,10 @@ func main() {
 
 	// Set up router
 	mux := http.NewServeMux()
+	mux.HandleFunc("/api/ping", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("pong"))
+	})
 	mux.HandleFunc("/api/contact", handlers.HandleContactSubmit)
 
 	// Configure CORS
